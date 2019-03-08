@@ -1,6 +1,10 @@
 <form [formGroup]="dynamicForm">
   <ion-item *ngFor="let question of questions">
     <ion-label position="stacked">{{ question.inputName }}</ion-label>
-    <ion-input [formControlName]="question.inputName"></ion-input>
+    <ion-input
+      [formControlName]="question.inputName"
+      [readonly]="readonly"
+      [disabled]="readonly"
+    ></ion-input>
   </ion-item>
 </form>

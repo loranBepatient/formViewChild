@@ -10,7 +10,7 @@ export class FormulaireComponent implements OnInit {
   private dynamicForm: FormGroup;
   constructor(private fb: FormBuilder) {}
   @Input() questions: Question[];
-  // @Input() readonly: boolean;
+  @Input() readonly: boolean;
 
   createFormControlsFromQuestions(questions: Question[]) {
     return questions.reduce((formControls, question) => {

@@ -9,6 +9,7 @@ import { Activity, Question } from "../models/dynamicForm";
   styleUrls: ["home.page.scss"]
 })
 export class HomePage implements AfterViewInit {
+  readonly: boolean;
   questions: Question[];
   submittedValues: Activity; // demo purpose only
   @ViewChild("dynamicForm")
@@ -19,6 +20,10 @@ export class HomePage implements AfterViewInit {
     this.formAsChildComponent.patchForm(this.service.activity);
   }
 
+  switchReadOnly() {
+    this.readonly = !this.readonly;
+  }
+
   onNext(): void {
     this.service.next();
     this.formAsChildComponent.patchForm(this.service.activity);
@@ -27,7 +32,9 @@ export class HomePage implements AfterViewInit {
   onSubmit(): void {
     this.submittedValues = this.service.save(this.formAsChildComponent.values);
   }
+
   constructor(private service: FormsService) {
     this.questions = this.service.questions;
+    this.readonly = true;
   }
 }

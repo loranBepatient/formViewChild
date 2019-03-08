@@ -3,11 +3,16 @@
     <ion-title>
       Dynamic Form
     </ion-title>
+    <ion-toggle slot="end" (click)="switchReadOnly()"></ion-toggle>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <app-formulaire #dynamicForm [questions]="questions"></app-formulaire>
+  <app-formulaire
+    #dynamicForm
+    [questions]="questions"
+    [readonly]="readonly"
+  ></app-formulaire>
 
   <div>
     <ion-button expand="block" color="medium" (click)="onNext()"
@@ -16,6 +21,7 @@
   </div>
   <div>
     <ion-button
+      *ngIf="!readonly"
       expand="block"
       [disabled]="formAsChildComponent.invalid"
       (click)="onSubmit()"
