@@ -1,12 +1,32 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      Dynamic Form
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+  <app-formulaire #dynamicForm [questions]="questions"></app-formulaire>
+  <div>
+    <ion-button expand="block" color="medium" (click)="onNext()"
+      >Next</ion-button
+    >
+  </div>
+  <div>
+    <ion-button
+      expand="block"
+      [disabled]="formAsChildComponent.dynamicForm.invalid"
+      (click)="onSubmit()"
+      >Submit</ion-button
+    >
+  </div>
+
+  <ion-card *ngIf="submittedValues">
+    <ion-card-content>
+      <pre>
+        {{ submittedValues | json }}
+      </pre>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
