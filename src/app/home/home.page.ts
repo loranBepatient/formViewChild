@@ -1,7 +1,7 @@
 import { Component, ViewChild, AfterViewInit } from "@angular/core";
 import { FormulaireComponent } from "./components/formulaire/formulaire.component";
 import { FormsService } from "./services/forms.service";
-import { Activity } from "../models/dynamicForm";
+import { Activity, Question } from "../models/dynamicForm";
 
 @Component({
   selector: "app-home",
@@ -9,25 +9,23 @@ import { Activity } from "../models/dynamicForm";
   styleUrls: ["home.page.scss"]
 })
 export class HomePage implements AfterViewInit {
-  questions;
+  questions: Question[];
   submittedValues: Activity; // demo purpose only
   @ViewChild("dynamicForm")
   private formAsChildComponent: FormulaireComponent;
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.service.next();
-    this.formAsChildComponent.dynamicForm.patchValue(this.service.activity);
+    this.formAsChildComponent.patchForm(this.service.activity);
   }
 
-  onNext() {
+  onNext(): void {
     this.service.next();
-    this.formAsChildComponent.dynamicForm.patchValue(this.service.activity);
+    this.formAsChildComponent.patchForm(this.service.activity);
   }
 
-  onSubmit() {
-    this.submittedValues = this.service.save(
-      this.formAsChildComponent.dynamicForm.value
-    );
+  onSubmit(): void {
+    this.submittedValues = this.service.save(this.formAsChildComponent.values);
   }
   constructor(private service: FormsService) {
     this.questions = this.service.questions;

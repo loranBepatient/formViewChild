@@ -8,6 +8,7 @@
 
 <ion-content padding>
   <app-formulaire #dynamicForm [questions]="questions"></app-formulaire>
+
   <div>
     <ion-button expand="block" color="medium" (click)="onNext()"
       >Next</ion-button
@@ -16,7 +17,7 @@
   <div>
     <ion-button
       expand="block"
-      [disabled]="formAsChildComponent.dynamicForm.invalid"
+      [disabled]="formAsChildComponent.invalid"
       (click)="onSubmit()"
       >Submit</ion-button
     >

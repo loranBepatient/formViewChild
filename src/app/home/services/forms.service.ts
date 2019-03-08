@@ -7,14 +7,14 @@ import { Question, Activity } from "src/app/models/dynamicForm";
 export class FormsService {
   private _currentActivity: Activity;
 
-  // should be fetched from API
-  protected _activities: Activity[] = [
+  // should be fetched from API or Store
+  private _activities: Activity[] = [
     { id: 1, label: "Activity 1", age: null },
     { id: 2, label: "Activity 2", age: 34 },
     { id: 3, label: null, age: null }
   ];
 
-  protected _questions: Question[] = [
+  private _questions: Question[] = [
     { inputName: "label", required: true },
     { inputName: "age" }
   ];
