@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Question, Activity } from "src/app/models/dynamicForm";
+import { Question, Activity, Form } from "src/app/models/dynamicForm";
 
 @Injectable({
   providedIn: "root"
@@ -14,14 +14,24 @@ export class FormsService {
     { id: 3, label: null, age: null }
   ];
 
-  private _questions: Question[] = [
-    { inputName: "label", required: true },
-    { inputName: "age" }
-  ];
+  private _form: Form = {
+    id: 1,
+    questions: [{ inputName: "label", required: true }, { inputName: "age" }],
+    readonly: true
+  };
+
   //
 
   get questions(): Question[] {
-    return this._questions;
+    return this._form.questions;
+  }
+
+  get readonly(): boolean {
+    return this._form.readonly;
+  }
+
+  set readonly(value: boolean) {
+    this._form.readonly = value;
   }
 
   get activity(): Activity {

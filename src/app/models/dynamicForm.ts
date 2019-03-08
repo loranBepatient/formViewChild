@@ -8,3 +8,9 @@ export interface Activity {
   label?: string;
   age?: number;
 }
+
+export interface Form {
+  id: number;
+  questions: Question[];
+  readonly: boolean;
+}

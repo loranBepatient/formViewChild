@@ -35,6 +35,6 @@ export class HomePage implements AfterViewInit {
 
   constructor(private service: FormsService) {
     this.questions = this.service.questions;
-    this.readonly = true;
+    this.readonly = this.service.readonly;
   }
 }
